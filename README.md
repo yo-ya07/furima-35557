@@ -18,14 +18,15 @@
 
 
 ## deliveryテーブル
-| Column                  | Type   | Options     |
-|-------------------------|--------|-------------|
-| delivery_postcode       | string | null: false |
-| delivery_street_address | string | null: false |
-| delivery_country        | string | null: false |
-| delivery_city           | string | null: false |
-| delivery_state          | string | null: false |
-| delivery_phone_number   | string | null: false |
+| Column                  | Type       | Options           |
+|-------------------------|------------|-------------------|
+| delivery_postcode       | string     | null: false       |
+| delivery_street_address | string     | null: false       |
+| delivery_country        | string     | null: false       |
+| delivery_city           | string     | null: false       |
+| delivery_state          | string     | null: false       |
+| delivery_phone_number   | string     | null: false       |
+| user                    | references | foreign_key: true |
 
 ### Association
 * belongs_to :user
@@ -33,17 +34,18 @@
 
 
 ## productテーブル
-| Column        | Type   | Options     |
-|---------------|--------|-------------|
-| items_name    | string | null: false |
-| items_info    | string | null: false |
-| category      | string | null: false |
-| status        | string | null: false |
-| postage       | string | null: false |
-| region        | string | null: false |
-| shipping_date | string | null: false |
-| price         | string | null: false |
-
+| Column        | Type       | Options           |
+|---------------|------------|-------------------|
+| items_name    | string     | null: false       |
+| items_info    | string     | null: false       |
+| category      | string     | null: false       |
+| status        | string     | null: false       |
+| postage       | string     | null: false       |
+| region        | string     | null: false       |
+| shipping_date | string     | null: false       |
+| price         | string     | null: false       |
+| user          | references | foreign_key: true |
+| delivery      | references | foreign_key: true |
 
 ### Association
 - belongs_to :user
