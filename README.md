@@ -1,24 +1,50 @@
-# README
+# テーブル設計
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## usersテーブル
+| Column          | Type   | Options     |
+|-----------------|--------|-------------|
+| nickname        | string | null: false |
+| email           | string | null: false |
+| user_password   | string | null: false |
+| last_name       | string | null: false |
+| first_name      | string | null: false |
+| last_name_kana  | string | null: false |
+| first_name_kana | string | null: false |
+| birth_day       | string | null: false |
 
-Things you may want to cover:
+### Association
+* belongs_to :delivery
+* has_many :product
 
-* Ruby version
 
-* System dependencies
+## deliveryテーブル
+| Column                  | Type   | Options     |
+|-------------------------|--------|-------------|
+| delivery_postcode       | string | null: false |
+| delivery_street_address | string | null: false |
+| delivery_country        | string | null: false |
+| delivery_city           | string | null: false |
+| delivery_state          | string | null: false |
+| delivery_phone_number   | string | null: false |
 
-* Configuration
+### Association
+* belongs_to :user
+* has_one :product
 
-* Database creation
 
-* Database initialization
+## productテーブル
+| Column        | Type   | Options     |
+|---------------|--------|-------------|
+| items_name    | string | null: false |
+| items_info    | string | null: false |
+| category      | string | null: false |
+| status        | string | null: false |
+| postage       | string | null: false |
+| region        | string | null: false |
+| shipping_date | string | null: false |
+| price         | string | null: false |
 
-* How to run the test suite
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+### Association
+- belongs_to :user
+- belongs_to :delivery
