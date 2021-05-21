@@ -22,7 +22,7 @@
 |----------------|------------|-------------------|
 | postcode       | string     | null: false       |
 | street_address | string     |                   |
-| country_id     | integer    | null: false       |
+| region_id      | integer    | null: false       |
 | city           | string     | null: false       |
 | state          | string     | null: false       |
 | phone_number   | string     | null: false       |
