@@ -18,25 +18,25 @@
 
 
 ## addressテーブル
-| Column                 | Type       | Options           |
-|------------------------|------------|-------------------|
-| address_postcode       | string     | null: false       |
-| address_street_address | string     | null: false       |
-| address_country        | string     | null: false       |
-| address_city           | string     | null: false       |
-| address_state          | string     | null: false       |
-| address_phone_number   | string     | null: false       |
-| purchase               | references | foreign_key: true |
+| Column         | Type       | Options           |
+|----------------|------------|-------------------|
+| postcode       | string     | null: false       |
+| street_address | string     |                   |
+| country_id     | integer    | null: false       |
+| city           | string     | null: false       |
+| state          | string     | null: false       |
+| phone_number   | string     | null: false       |
+| purchase       | references | foreign_key: true |
 
 ### Association
-* belongs/ :purchase
+* belongs_to :purchase
 
 
 ## productテーブル
 | Column           | Type       | Options           |
 |------------------|------------|-------------------|
-| items_name       | string     | null: false       |
-| items_info       | text       | null: false       |
+| name             | string     | null: false       |
+| info             | text       | null: false       |
 | category_id      | integer    | null: false       |
 | status_id        | integer    | null: false       |
 | postage_id       | integer    | null: false       |
@@ -46,8 +46,8 @@
 | user             | references | foreign_key: true |
 
 ### Association
-- belongs_to :user
-- belongs_to :purchase
+* belongs_to :user
+* has_one :purchase
 
 
 ## purchaseテーブル
