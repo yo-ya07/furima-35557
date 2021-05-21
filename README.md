@@ -17,7 +17,7 @@
 * has_many :products
 
 
-## addressテーブル
+## addressesテーブル
 | Column         | Type       | Options           |
 |----------------|------------|-------------------|
 | postcode       | string     | null: false       |
@@ -32,7 +32,7 @@
 * belongs_to :purchase
 
 
-## productテーブル
+## productsテーブル
 | Column           | Type       | Options           |
 |------------------|------------|-------------------|
 | name             | string     | null: false       |
@@ -50,7 +50,7 @@
 * has_one :purchase
 
 
-## purchaseテーブル
+## purchasesテーブル
 | Column          | Type       | Options           |
 |-----------------|------------|-------------------|
 | user            | references | foreign_key: true |
