@@ -6,8 +6,10 @@ class User < ApplicationRecord
   # has_many :tweets
   # has_many :comments
 
-  validates :nickname, 
-    presence: true
+  with_options presence: true do
+    validates :nickname 
+    validates :birth_day
+  end
 
   VALID_PASSWORD_REGEX = /\A(?=.*?[a-z])(?=.*?[\d])[a-z\d]+\z/i
   validates :password, 
@@ -22,7 +24,4 @@ class User < ApplicationRecord
     validates :last_name_kana
     validates :first_name_kana
   end
-
-  validates :birth_day,
-    presence: true
 end

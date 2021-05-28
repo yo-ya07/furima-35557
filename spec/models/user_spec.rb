@@ -57,6 +57,18 @@ describe User do
         expect(@user.errors.full_messages).to include("Password is invalid")
       end
 
+      it 'passwordが半角英字のみの場合は登録できない' do
+        @user.password= 'abcdef'
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Password is invalid")
+      end
+
+      it 'passwordが全角の場合は登録できない' do
+        @user.password= '１２３ＡＢＣ'
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Password is invalid")
+      end
+
       it 'passwordとpassword_confirmationが不一致では登録できない' do
         @user.password= '123abc'
         @user.password_confirmation= 'abc123'
@@ -94,6 +106,18 @@ describe User do
         @user.last_name_kana  = 'ヤマダ'
         @user.valid?
         expect(@user.errors.full_messages).to include("Last name is invalid")
+      end
+
+      it 'last_name_kanaが空では登録できない' do
+        @user.last_name_kana  = ''
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Last name kana is invalid")
+      end
+      
+      it 'first_name_kanaが空では登録できない' do
+        @user.first_name_kana = ''
+        @user.valid?
+        expect(@user.errors.full_messages).to include("First name kana is invalid")
       end
 
       it 'ユーザー本名の名字のフリガナは、全角（カタカナ）で入力されなければ登録できない' do
