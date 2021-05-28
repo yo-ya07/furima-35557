@@ -113,7 +113,7 @@ describe User do
         @user.valid?
         expect(@user.errors.full_messages).to include("Last name kana is invalid")
       end
-      
+
       it 'first_name_kanaが空では登録できない' do
         @user.first_name_kana = ''
         @user.valid?
@@ -125,12 +125,25 @@ describe User do
         @user.valid?
         expect(@user.errors.full_messages).to include("Last name kana is invalid")
       end
+
       it 'ユーザー本名の名前のフリガナは、全角（カタカナ）で入力されなければ登録できない' do
         @user.first_name_kana = 'たろう'
         @user.valid?
         expect(@user.errors.full_messages).to include("First name kana is invalid")
       end
+      
+      it 'ユーザー本名の名字のフリガナは、半角（カタカナ）での入力は登録できない' do
+        @user.last_name_kana  = 'ﾔﾏﾀﾞ'
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Last name kana is invalid")
+      end
 
+      it 'ユーザー本名の名前のフリガナは、半角（カタカナ）での入力は登録できない' do
+        @user.first_name_kana = 'ﾀﾛｳ'
+        @user.valid?
+        expect(@user.errors.full_messages).to include("First name kana is invalid")
+      end
+      
       it '生年月日が入力されなければ登録できない' do
         @user.birth_day = ''
         @user.valid?
