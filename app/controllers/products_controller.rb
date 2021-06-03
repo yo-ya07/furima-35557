@@ -2,8 +2,8 @@ class ProductsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
 
   def index
-    
     @products = Product.all
+    @products = Product.order(:id)
   end
 
   def new
@@ -19,13 +19,13 @@ class ProductsController < ApplicationController
     end
   end
   
-  def show
-    @product  = Product.new
-    # @product = Product.find_by(id: params[:id])
-    # @product = Product.includes(:user).find(params[:id])
-    # @product  = Product.new(product_params)
-    # @user = User.find_by(id: @product.user_id)
-  end
+  # def show
+  #   @product  = Product.new
+  #   # @product = Product.find_by(id: params[:id])
+  #   # @product = Product.includes(:user).find(params[:id])
+  #   # @product  = Product.new(product_params)
+  #   # @user = User.find_by(id: @product.user_id)
+  # end
 
 
   # def edit
