@@ -18,13 +18,9 @@ class ProductsController < ApplicationController
     end
   end
   
-  # def show
-  #   @product  = Product.new
-  #   # @product = Product.find_by(id: params[:id])
-  #   # @product = Product.includes(:user).find(params[:id])
-  #   # @product  = Product.new(product_params)
-  #   # @user = User.find_by(id: @product.user_id)
-  # end
+  def show
+    @product = Product.find(params[:id])
+  end
 
 
   # def edit
