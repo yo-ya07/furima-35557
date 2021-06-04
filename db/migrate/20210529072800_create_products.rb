@@ -20,13 +20,3 @@ class CreateProducts < ActiveRecord::Migration[6.0]
     # end
   end
 end
-
-
-# ・rails db:migrate:reset
-# DBを全部つくりなおしてくれる
-# （データベースを一回どろっぷして、マイグレートしてくれる）
-# 中身が全部消えてしまうので、ユーザー登録は新規で必要になります！
-
-# ・Mysql2::Error: BLOB/TEXT column 'info' can't have a default value
-# READMEをみて、必要なカラムだけを書いてあげる
-# 不要なものは削除してあげてください！

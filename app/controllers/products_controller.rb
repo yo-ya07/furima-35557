@@ -2,7 +2,7 @@ class ProductsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
 
   def index
-  #   @products = Product.all
+    @products = Product.all.order(id: "DESC")
   end
 
   def new
@@ -17,6 +17,27 @@ class ProductsController < ApplicationController
       render :new
     end
   end
+  
+  # def show
+  #   @product  = Product.new
+  #   # @product = Product.find_by(id: params[:id])
+  #   # @product = Product.includes(:user).find(params[:id])
+  #   # @product  = Product.new(product_params)
+  #   # @user = User.find_by(id: @product.user_id)
+  # end
+
+
+  # def edit
+  #   @product  = Product.new
+  # end
+
+  # def update
+  #   @product  = Product.new
+  # end
+
+  # def destroy
+  #   @product  = Product.new
+  # end
   
   private
   def product_params
