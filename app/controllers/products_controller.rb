@@ -1,10 +1,10 @@
 class ProductsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
-  before_action :set_product, only: [:show, :edit, :update]
+  before_action :set_product, only: [:show, :edit, :update, :destroy]
   before_action :user_validation, only: [:edit, :update]
 
   def index
-    @products = Product.all.order(id: "DESC")
+    @products = Product.all.order(id: 'DESC')
   end
 
   def new
@@ -19,7 +19,7 @@ class ProductsController < ApplicationController
       render :new
     end
   end
-  
+
   def show
   end
 
@@ -27,20 +27,20 @@ class ProductsController < ApplicationController
   end
 
   def update
-    if @product.update(product_params)
-        redirect_to products_path
-    else
-      render :edit
-    end
+    @product.update(product_params)
+    redirect_to products_path
   end
 
-  # def destroy
-  #   @product  = Product.new
-  # end
-  
+  def destroy
+    @product.destroy
+    redirect_to products_path
+  end
+
   private
+
   def product_params
-    params.require(:product).permit(:image, :name, :info, :category_id, :status_id, :postage_id, :region_id, :shipping_date_id, :price ).merge(user_id: current_user.id)
+    params.require(:product).permit(:image, :name, :info, :category_id, :status_id, :postage_id, :region_id, :shipping_date_id,
+                                    :price).merge(user_id: current_user.id)
   end
 
   def set_product

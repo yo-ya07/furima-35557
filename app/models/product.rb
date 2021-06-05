@@ -9,8 +9,8 @@ class Product < ApplicationRecord
   belongs_to :postage
   belongs_to :region
   belongs_to :shipping_date
-  
-  VALID_PRICE_REGEX = /\A[0-9]+\z/
+
+  VALID_PRICE_REGEX = /\A[0-9]+\z/.freeze
   with_options presence: true do
     validates :name
     validates :info
@@ -22,9 +22,9 @@ class Product < ApplicationRecord
       validates :postage_id
       validates :region_id
       validates :shipping_date_id
-    
-  
-      with_options numericality: { only_integer: true,greater_than: 299, less_than: 10000000}, format: { with: VALID_PRICE_REGEX } do
+
+      with_options numericality: { only_integer: true, greater_than: 299, less_than: 10_000_000 },
+                   format: { with: VALID_PRICE_REGEX } do
         validates :price
       end
     end
