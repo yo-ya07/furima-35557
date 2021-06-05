@@ -78,7 +78,7 @@
           発送までの日数
           <span class="indispensable">必須</span>
         </div>
-        <%= f.collection_select(:shipping_date_id, Shipping_date.all, :id, :name, {}, {class:"select-box", id:"item-scheduled-delivery"}) %>
+        <%= f.collection_select(:shipping_date_id, ShippingDate.all, :id, :name, {}, {class:"select-box", id:"item-scheduled-delivery"}) %>
       </div>
     </div>
     <%# /配送について %>
@@ -136,7 +136,7 @@
     <%# 下部ボタン %>
     <div class="sell-btn-contents">
       <%= f.submit "変更する", class:"sell-btn" %>
-      <%=link_to 'もどる', root_path, class:"back-btn" %>
+      <%=link_to 'もどる', product_path, class:"back-btn" %>
     </div>
     <%# /下部ボタン %>
   </div>
