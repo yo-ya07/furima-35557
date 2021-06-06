@@ -51,8 +51,6 @@ class ProductsController < ApplicationController
   end
 
   def user_deletion
-    unless Product.find(params[:id]).user.id.to_i == current_user.id
-      redirect_to products_path
-    end
+    redirect_to products_path unless current_user.id == @product.user_id
   end
 end
