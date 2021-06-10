@@ -25,15 +25,13 @@
       </span>
     </div>
 
-    <% if user_signed_in? %>
-      <% if @product.purchase.blank? %> <%# 購入済みの商品の場合 %>
-        <% if current_user.id == @product.user_id %> <%# ログインしているユーザーと出品しているユーザーが、同一人物の場合 %>
-          <%= link_to "商品の編集", edit_product_path(@product.id), method: :get, class:"item-red-btn" %>
-          <p class="or-text">or</p>
-          <%= link_to "削除", product_path(@product.id), method: :delete, class:"item-destroy" %>
-        <% else %> <%# ログインしているユーザーと出品しているユーザーが、同一人物ではない場合 %>
-          <%= link_to "購入画面に進む", product_purchases_path(@product.id),class:"item-red-btn" %>
-        <% end %>
+    <% if user_signed_in? && @product.purchase.blank? %> <%# 購入済みの商品の場合 %>
+      <% if current_user.id == @product.user_id %> <%# ログインしているユーザーと出品しているユーザーが、同一人物の場合 %>
+        <%= link_to "商品の編集", edit_product_path(@product.id), method: :get, class:"item-red-btn" %>
+        <p class="or-text">or</p>
+        <%= link_to "削除", product_path(@product.id), method: :delete, class:"item-destroy" %>
+      <% else %> <%# ログインしているユーザーと出品しているユーザーが、同一人物ではない場合 %>
+        <%= link_to "購入画面に進む", product_purchases_path(@product.id),class:"item-red-btn" %>
       <% end %>
     <% end %>
 
