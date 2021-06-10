@@ -1,12 +1,20 @@
 require 'rails_helper'
 describe PurchaseAddress do
   before do
-    @address = FactoryBot.build(:purchase_address)
+    user     = FactoryBot.create(:user)
+    product  = FactoryBot.create(:product)
+    @address = FactoryBot.build(:purchase_address, user_id: user.id, product_id: product.id)
+    sleep(1)
   end
 
   describe '商品購入機能' do
     context '配送先の保存がうまくいくとき' do # 商品出品機能のテスト
       it '全ての項目の入力が存在すれば登録できること' do
+        expect(@address).to be_valid
+      end
+
+      it '建物名が抜けていても登録できる' do
+        @address.state = ''
         expect(@address).to be_valid
       end
     end
@@ -52,6 +60,30 @@ describe PurchaseAddress do
         @address.phone_number = '123456789012'
         @address.valid?
         expect(@address.errors.full_messages).to include("Phone number is invalid")
+      end
+
+      it '電話番号が英数字混合だと登録できない' do
+        @address.phone_number = 'cphQbu8aVRe'
+        @address.valid?
+        expect(@address.errors.full_messages).to include("Phone number is invalid")
+      end
+
+      it 'user_idが空だと登録できない' do
+        @address.user_id = ''
+        @address.valid?
+        expect(@address.errors.full_messages).to include("User can't be blank")
+      end
+
+      it 'product_idが空だと登録できない' do
+        @address.product_id = ''
+        @address.valid?
+        expect(@address.errors.full_messages).to include("Product can't be blank")
+      end
+
+      it 'region_idが1だと登録できない' do
+        @address.region_id = 1
+        @address.valid?
+        expect(@address.errors.full_messages).to include("Region must be other than 1")
       end
     end
   end

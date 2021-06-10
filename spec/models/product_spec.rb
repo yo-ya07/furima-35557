@@ -2,7 +2,7 @@ require 'rails_helper'
 describe Product do
   before do
     @product = FactoryBot.build(:product)
-    @product.image = fixture_file_upload('/test_image.png')
+    # @product.image = fixture_file_upload('/test_image.png')
   end
 
   describe '商品出品機能' do

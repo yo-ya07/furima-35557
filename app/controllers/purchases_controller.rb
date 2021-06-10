@@ -1,11 +1,10 @@
 class PurchasesController < ApplicationController
-  before_action :authenticate_user!, except: [:create]
+  before_action :authenticate_user!, only: [:index, :create]
   before_action :set_product, only: [:index, :create]
   before_action :sold_item, only: [:index, :create]
   
   def index
     @purchase_address = PurchaseAddress.new
-    binding.pry
     if current_user == @purchase_address.user
       　redirect_to root_path
     end

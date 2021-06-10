@@ -11,12 +11,17 @@ class PurchaseAddress
                 :token
 
   VALID_POST_REGEX  = /\A\d{3}[-]\d{4}\z/
-  VALID_PHONE_REGEX = /\A\d{11}\z/
+  VALID_PHONE_REGEX = /\A\d{,11}\z/
   with_options presence: true do
-    validates :region_id
+    validates :user_id
+    validates :product_id
     validates :city
     validates :street_address
     validates :token
+
+    with_options numericality: { other_than: 1 } do
+      validates :region_id
+    end
 
     with_options format: { with: VALID_POST_REGEX } do
       validates :postcode
