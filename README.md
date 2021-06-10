@@ -21,10 +21,10 @@
 | Column         | Type       | Options           |
 |----------------|------------|-------------------|
 | postcode       | string     | null: false       |
-| street_address | string     |                   |
 | region_id      | integer    | null: false       |
 | city           | string     | null: false       |
-| state          | string     | null: false       |
+| street_address | string     | null: false       |
+| state          | string     |                   |
 | phone_number   | string     | null: false       |
 | purchase       | references | foreign_key: true |
 

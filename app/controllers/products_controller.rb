@@ -3,6 +3,8 @@ class ProductsController < ApplicationController
   before_action :set_product, only: [:show, :edit, :update, :destroy]
   before_action :user_validation, only: [:edit, :update]
   before_action :user_deletion, only: [:destroy]
+  before_action :sold_item, only: [:edit, :update, :destroy]
+  
 
   def index
     @products = Product.all.order(id: 'DESC')
@@ -54,5 +56,9 @@ class ProductsController < ApplicationController
 
   def user_deletion
     redirect_to products_path unless current_user.id == @product.user_id
+  end
+
+  def sold_item
+    redirect_to root_path if @product.purchase.present?
   end
 end
