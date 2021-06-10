@@ -68,6 +68,12 @@ describe PurchaseAddress do
         expect(@address.errors.full_messages).to include("Phone number is invalid")
       end
 
+      it '電話番号が全角数字だと登録できない' do
+        @address.phone_number = '５５００５５００５５'
+        @address.valid?
+        expect(@address.errors.full_messages).to include("Phone number is invalid")
+      end
+
       it 'user_idが空だと登録できない' do
         @address.user_id = ''
         @address.valid?

@@ -11,7 +11,7 @@ class PurchaseAddress
                 :token
 
   VALID_POST_REGEX  = /\A\d{3}[-]\d{4}\z/
-  VALID_PHONE_REGEX = /\A\d{,11}\z/
+  VALID_PHONE_REGEX = /\A\d{10,11}\z/
   with_options presence: true do
     validates :user_id
     validates :product_id
